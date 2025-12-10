@@ -13,7 +13,7 @@ STRING cd ~/Desktop
 ENTER
 
 REM We download the necessary scripts through github
-STRING git clone git@github.com:Night4Watcher/flipper_projects.git 
+STRING git clone https://github.com/Night4Watcher/flipper_projects.git
 ENTER
 DELAY 10000
 
