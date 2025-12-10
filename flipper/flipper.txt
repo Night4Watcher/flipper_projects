@@ -15,14 +15,16 @@ ENTER
 REM We download the necessary scripts through github
 STRING git clone git@github.com:Night4Watcher/flipper_projects.git 
 ENTER
+DELAY 10000
 
 REM We execute the downloaded file
+STRING cd flipper_projects
+ENTER
 STRING cd flipper
 ENTER
 STRING python3 ruleta_rusa.py
 
 REM This will close the used terminal
-DELAY 10000
 CONTROL C
 STRING exit
 ENTER
