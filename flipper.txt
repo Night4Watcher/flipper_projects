@@ -8,18 +8,13 @@ REM This will clear the information on the terminal
 STRING clear
 ENTER
 
-REM We modify the current directory to the Desktop
+REM Whe modify the current directory to the Desktop
 STRING cd ~/Desktop
 ENTER
 
-REM We download the necessary scripts through github
-STRING git clone git@github.com:Night4Watcher/flipper_projects.git 
+REM Whe download the necessary scripts through github
+STRING git clone git@github.com:Night4Watcher/flipper_projects.git
 ENTER
-
-REM We execute the downloaded file
-STRING cd flipper
-ENTER
-STRING python3 ruleta_rusa.py
 
 REM This will close the used terminal
 DELAY 10000
