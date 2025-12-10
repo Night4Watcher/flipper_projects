@@ -23,6 +23,8 @@ ENTER
 STRING cd flipper
 ENTER
 STRING python3 ruleta_rusa.py
+ENTER
+DELAY 10000
 
 REM This will close the used terminal
 CONTROL C
