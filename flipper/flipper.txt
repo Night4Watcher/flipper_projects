@@ -1,5 +1,5 @@
 REM 
-DEFAULT_DELAY 1000
+DEFAULT_DELAY 500
 
 REM This will open the terminal through shortcouts
 CONTROL ALT T
