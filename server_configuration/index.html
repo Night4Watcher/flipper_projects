@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚠️ ALERTA DE SEGURIDAD</title>
+    <style>
+        :root {
+            --color-danger: #ff4444;
+            --color-dark: #0a0e27;
+            --color-darker: #050812;
+            --color-text: #e0e0e0;
+            --color-accent: #00ff88;
+            --color-warning: #ffaa00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, var(--color-darker) 0%, #1a0f2e 100%);
+            color: var(--color-text);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 255, 136, 0.03) 0px,
+                    rgba(0, 255, 136, 0.03) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            pointer-events: none;
+            animation: scanlines 8s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes scanlines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(10px); }
+        }
+
+        /* Glitch effect */
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 var(--color-danger), -2px 0 var(--color-accent); }
+            20% { text-shadow: -2px 0 var(--color-danger), 2px 0 var(--color-accent); }
+            40% { text-shadow: 0 0 var(--color-danger), 0 0 var(--color-accent); }
+            60% { text-shadow: 2px 0 var(--color-danger), -2px 0 var(--color-accent); }
+            80% { text-shadow: -2px 0 var(--color-danger), 2px 0 var(--color-accent); }
+            100% { text-shadow: 0 0 var(--color-danger), 0 0 var(--color-accent); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .warning-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--color-danger);
+            margin-bottom: 10px;
+            animation: glitch 2s ease-in-out infinite;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: var(--color-accent);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Main content */
+        .main-content {
+            background: rgba(10, 14, 39, 0.9);
+            border: 2px solid var(--color-danger);
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 700px;
+            box-shadow: 0 0 30px rgba(255, 68, 68, 0.3),
+                        inset 0 0 20px rgba(0, 255, 136, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .alert-section {
+            margin-bottom: 30px;
+        }
+
+        .alert-section h2 {
+            color: var(--color-warning);
+            font-size: 20px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--color-danger);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .alert-section p {
+            line-height: 1.8;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .danger-text {
+            color: var(--color-danger);
+            font-weight: bold;
+        }
+
+        .accent-text {
+            color: var(--color-accent);
+            font-weight: bold;
+        }
+
+        /* List styling */
+        .threat-list {
+            list-style: none;
+            margin-left: 20px;
+        }
+
+        .threat-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 14px;
+        }
+
+        .threat-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--color-danger);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        /* Actions */
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 15px 30px;
+            font-size: 16px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            border: 2px solid;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            background: transparent;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button-primary {
+            border-color: var(--color-danger);
+            color: var(--color-danger);
+            background: rgba(255, 68, 68, 0.1);
+        }
+
+        .button-primary:hover {
+            background: var(--color-danger);
+            color: white;
+            box-shadow: 0 0 20px var(--color-danger);
+            transform: scale(1.05);
+        }
+
+        .button-secondary {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .button-secondary:hover {
+            background: var(--color-accent);
+            color: var(--color-darker);
+            box-shadow: 0 0 20px var(--color-accent);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(224, 224, 224, 0.5);
+            border-top: 1px solid rgba(255, 68, 68, 0.2);
+            padding-top: 20px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid var(--color-accent);
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-label {
+            color: var(--color-text);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            color: var(--color-accent);
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--color-dark);
+            margin: 10% auto;
+            padding: 30px;
+            border: 2px solid var(--color-danger);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 0 40px rgba(255, 68, 68, 0.5);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            color: var(--color-danger);
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .close {
+            color: var(--color-accent);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--color-danger);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .main-content {
+                padding: 25px;
+            }
+
+            .warning-icon {
+                font-size: 60px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="warning-icon">⚠️</div>
+            <div class="title">Sistema Comprometido</div>
+            <div class="subtitle">Alerta de Seguridad Crítica</div>
+        </div>
+
+        <div class="main-content">
+            <div class="alert-section">
+                <h2>🔒 Estado Actual</h2>
+                <p>Tu cuenta ha sido <span class="danger-text">COMPROMETIDA</span>. Se ha detectado acceso no autorizado a tus datos personales.</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-label">Datos Filtrados</div>
+                    <div class="stat-value">100%</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Archivos Infectados</div>
+                    <div class="stat-value">847</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Contraseñas en Riesgo</div>
+                    <div class="stat-value">12</div>
+                </div>
+            </div>
+
+            <div class="alert-section">
+                <h2>⚡ Amenazas Detectadas</h2>
+                <ul class="threat-list">
+                    <li>Acceso remoto no autorizado desde IP: <span class="accent-text">192.168.1.105</span></li>
+                    <li>Instalación de malware en proceso del sistema</li>
+                    <li>Extracción de datos bancarios en curso</li>
+                    <li>Credenciales comprometidas en redes sociales</li>
+                    <li>Ransomware detectado en partición C:</li>
+                    <li>Actividad sospechosa en servidor de correos</li>
+                </ul>
+            </div>
+
+            <div class="alert-section">
+                <h2>🚨 Acciones Inmediatas Requeridas</h2>
+                <p>Para proteger tu información, debes actuar <span class="danger-text">AHORA</span>:</p>
+                <ul class="threat-list">
+                    <li>Desconectar todos los dispositivos de Internet</li>
+                    <li>Cambiar todas tus contraseñas</li>
+                    <li>Contactar a tu banco inmediatamente</li>
+                    <li>Escanear sistema completo con antivirus</li>
+                    <li>Monitorear tu identidad en línea</li>
+                </ul>
+            </div>
+
+            <div class="alert-section">
+                <h2>📞 Soporte de Emergencia</h2>
+                <p>Línea directa: <span class="accent-text">1-800-SEGURIDAD</span></p>
+                <p>Email de soporte: <span class="accent-text">emergencia@soporte.com</span></p>
+                <p style="font-size: 12px; margin-top: 15px; color: rgba(224, 224, 224, 0.7);">Disponible 24/7 - Respuesta en menos de 5 minutos</p>
+            </div>
+
+            <div class="actions">
+                <button class="button button-primary" onclick="showDetails()">Ver Detalles Completos</button>
+                <button class="button button-secondary" onclick="initiateRecovery()">Iniciar Recuperación</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>🔴 ALERTA CRÍTICA DE SEGURIDAD</p>
+            <p>Última verificación: 15/12/2025 - 16:04 CET</p>
+            <p>Sistema de Protección Avanzado v2.1</p>
+        </div>
+    </div>
+
+    <!-- Modal de detalles -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">⚠️ Detalles Técnicos</div>
+            <p style="margin-bottom: 15px;">Información detallada de la infiltración:</p>
+            <div style="background: rgba(0, 255, 136, 0.05); border-left: 3px solid var(--color-accent); padding: 15px; border-radius: 5px; font-size: 12px; line-height: 1.6;">
+                <p>[SISTEMA_COMPROMETIDO]</p>
+                <p>[2025-12-15 16:04:23] Intrusión detectada</p>
+                <p>[2025-12-15 16:04:45] Escalación de privilegios</p>
+                <p>[2025-12-15 16:05:12] Exfiltración de datos iniciada</p>
+                <p>[2025-12-15 16:05:38] Malware instalado en kernel</p>
+                <p>[2025-12-15 16:06:01] Backdoor abierto para acceso persistente</p>
+                <p style="color: var(--color-danger); margin-top: 15px;">⚠️ ACCIÓN REQUERIDA: Contactar a soporte inmediatamente</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functions
+        function showDetails() {
+            document.getElementById('detailsModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('detailsModal').style.display = 'none';
+        }
+
+        function initiateRecovery() {
+            alert('⚠️ ADVERTENCIA\n\nEsto es una simulación de página de seguridad.\n\nEsta página es una demostración educativa de cómo se ven los sitios de alerta de seguridad maliciosos (scareware).\n\nNO representa una amenaza real.');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            var modal = document.getElementById('detailsModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Random stat updates for effect
+        function updateStats() {
+            const statValues = document.querySelectorAll('.stat-value');
+            setInterval(() => {
+                statValues[0].textContent = Math.floor(Math.random() * 100) + 50 + '%';
+                statValues[1].textContent = Math.floor(Math.random() * 2000) + 500;
+                statValues[2].textContent = Math.floor(Math.random() * 30) + 5;
+            }, 3000);
+        }
+
+        updateStats();
+    </script>
+</body>
+</html>

